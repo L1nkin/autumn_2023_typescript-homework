@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react'
 import { useStore, charactersReducerActions } from '../../store'
 import { useCharacters } from '../../api/hooks'
 import { CharactersList } from '../../components/characters-list'
 import { useCharactersFilter } from './hooks'
 import { useGlobalLoading } from '../../providers/global-loading-provider'
 import styles from './characters.module.scss'
+import React from 'react';
 
 export const Characters = () => {
   const [charactersFilter, setCharactersFilter] = useState('')
@@ -32,7 +33,7 @@ export const Characters = () => {
     [state.characters],
   )
 
-  const onChangeHandler = useCallback(({ target }) => {
+  const onChangeHandler = useCallback(({ target }: ChangeEvent<HTMLInputElement>) => {
     setCharactersFilter(target.value)
   }, [])
 
