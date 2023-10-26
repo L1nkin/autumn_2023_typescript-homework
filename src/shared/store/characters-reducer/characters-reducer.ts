@@ -1,13 +1,19 @@
 import { Character } from "../../interfaces"
-import { DispatchType } from "../providers/store-provider/store-provider"
+import { ActionType } from "../providers/store-provider/store-provider"
+import { CharacterPayload } from "../store/main-store"
 
-const SET_CHARACTERS = 'SET_CHARACTERS'
-
-export const charactersReducerActions = {
-  setCharacters: SET_CHARACTERS,
+type CharactersActionType<Type extends ActionType, Payload> = {
+  type: Type
+  payload: Payload
 }
 
-export const charactersReducer = (state: Character[], action: Required<DispatchType>) => {
+export type CharactersAction = CharactersActionType<ActionType, CharacterPayload>
+
+export const charactersReducerActions = {
+  setCharacters: 'SET_CHARACTERS',
+}
+
+export const charactersReducer = (state: Character[], action: CharactersAction) => {
   switch (action.type) {
     case charactersReducerActions.setCharacters:
       const { characters } = action.payload

@@ -1,20 +1,18 @@
 import React, { createContext, useReducer, useContext, ReactNode } from 'react'
 import { initialState, mainReducer } from '../../store'
-import { CharacterStore } from '../../store/main-store'
+import { CharactersAction } from '../../characters-reducer/characters-reducer'
+import { CharacterPayload } from '../../store/main-store'
 
-export type DispatchType = {
-  type: string,
-  payload: CharacterStore
-}
+export type ActionType = 'SET_CHARACTERS'
 
 type ContextProvider = {
-  state: CharacterStore,
-  dispatch: ({ type, payload }: DispatchType) => void
+  state: CharacterPayload,
+  dispatch: ({ type, payload }: CharactersAction) => void
 }
 
 export const Context = createContext<ContextProvider>({
   state: initialState,
-  dispatch: function ({ type, payload }: DispatchType): void {
+  dispatch: function ({ type, payload }: CharactersAction): void {
     throw new Error('Function not implemented.');
   },
 })
