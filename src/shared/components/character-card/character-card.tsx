@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import styles from './character-card.module.scss'
 
@@ -25,10 +25,15 @@ export const CharacterCard = ({
   onClick,
   disabled = false,
 }: CharacterCardProps) => {
+
+  const onCardClick = useCallback(() => {
+    onClick(name)
+  }, [name, onClick])
+
   return (
     <div
       className={classnames(styles.card, { [styles.disabled]: disabled })}
-      onClick={() => onClick(name)}
+      onClick={onCardClick}
     >
       <div className={styles.image}>
         <img src={imgUrl} alt={name} />

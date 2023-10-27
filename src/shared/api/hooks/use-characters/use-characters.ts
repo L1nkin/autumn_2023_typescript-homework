@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getCharacters } from '../../get-characters'
-import { Character, Info } from '../../../interfaces'
+import { Character } from '../../../interfaces'
 
 export const useCharacters = () => {
   const [characters, setCharacters] = useState<Character[]>([])
@@ -11,8 +11,8 @@ export const useCharacters = () => {
     setLoading(true)
 
     getCharacters()
-      .then((characters: Info<Character[]>) => {
-        setCharacters(characters.results!)
+      .then((characters) => {
+        setCharacters(characters?.results!)
       })
       .catch(setError)
       .finally(() => {
