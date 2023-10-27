@@ -1,9 +1,9 @@
 import { BASE_PATH, defaultErrorMessage } from './consts'
 
 export const makeRequest = async (
-  endpointUrl,
-  options,
-  basePath = BASE_PATH,
+  endpointUrl: string,
+  options?: Record<string, string>,
+  basePath: string = BASE_PATH,
 ) => {
   const url = `${basePath}/${endpointUrl}`
 

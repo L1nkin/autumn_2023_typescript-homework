@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { getCharacters } from '../../get-characters'
+import { Character } from '../../../interfaces'
 
 export const useCharacters = () => {
-  const [characters, setCharacters] = useState([])
+  const [characters, setCharacters] = useState<Character[]>([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -11,7 +12,7 @@ export const useCharacters = () => {
 
     getCharacters()
       .then((characters) => {
-        setCharacters(characters.results)
+        setCharacters(characters?.results!)
       })
       .catch(setError)
       .finally(() => {
